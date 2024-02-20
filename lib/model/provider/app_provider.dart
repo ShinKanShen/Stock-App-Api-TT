@@ -30,60 +30,63 @@ class SortCodeConst {
 }
 
 class AppChungKhoanProvider extends ChangeNotifier {
+  // khoi tao api service
   final ApiChungKhoanService _api = ApiChungKhoanService();
-
+  // chuc nang index
   String _currentIndex = IndexCodeConst.vn30;
   String get currentIndexCode => _currentIndex;
-
+  // chuc nang sap xep
   final String _currentSort = SortCodeConst.az;
   String get currentSortIndexCode => _currentSort;
-
+  // lay du lieu chung khoan tu api va de thuc hien cac chuc nang
   List<Data> _chungKhoanData = [];
-  final List<Data> _chungKhoanDataSort = [];
-  List get chungKhoanDataSort => _chungKhoanDataSort;
+  List<Data> _chungKhoanDataSort = [];
+  List<Data> get chungKhoanDataSort => _chungKhoanDataSort;
   List<Data> get getChungKhoan => _chungKhoanData;
-
+  // danh muc text cho hient hi
   String _danhmucText = '';
   String get danhMucText => _danhmucText;
 
-  List<Data> chungKhoanSelected = [];
-
+  // danh muc khi them va cac chuc nang lien quan
   final List<Map<String, dynamic>> _danhmuc = [];
   List<Map<String, dynamic>> get danhMuc => _danhmuc;
+  // luu co phieu khi ta nhan luu khi them
 
-  int checkSelected = 0;
-
+  int checkSelected = 0; // check luu hay chua
   final List<dynamic> _selectedItem = [];
   List<dynamic> get selectedItem => _selectedItem;
-
+  // tra lai co phieu nhu ban dau khi ma thay doi gia tri
   late int _selectItemCount;
   int get selectItemCount => _selectItemCount;
-  // void setDanhMucText(String text){
-  //   _danhmucText = text;
-  //   notifyListeners();
-  // }
+
   // add danh muc
   void addDanhMuc(var tendanhmuc) {
-     List<Data> selectedItem = List.from(_selectedItem);
-     _selectItemCount = selectedItem.length;
+    List<Data> selectedItem = List.from(_selectedItem);
+    _selectItemCount = selectedItem.length;
     _danhmuc.add({
       'name': tendanhmuc,
       'chungKhoans': selectedItem,
     });
     _danhmucText = tendanhmuc;
-    
+
     notifyListeners();
   }
-  
-  // set default cho chung khoan 
-  void setDefaultItem(){
-    for(int i=0; i<selectItemCount; i++){
-      _chungKhoanData[i].isSave=0;
+
+  // set data for sort
+  void addDataForSort() {
+    _chungKhoanDataSort = List<Data>.from(getDanhMucSelectedItem());
+    notifyListeners();
+  }
+
+  // set default cho chung khoan
+  void setDefaultItem() {
+    for (int i = 0; i < selectItemCount; i++) {
+      _chungKhoanData[i].isSave = 0;
     }
     notifyListeners();
   }
 
-  // tim danh muc item 
+  // tim danh muc item
   bool findDanhMucItem(String name) {
     if (_danhmuc.where((element) => element['name'] == name).isNotEmpty) {
       return true;
@@ -91,7 +94,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
     return false;
   }
 
-  // clear selected item 
+  // clear selected item
   void clearSelectenList() {
     _selectedItem.clear();
   }
@@ -101,26 +104,28 @@ class AppChungKhoanProvider extends ChangeNotifier {
     if (_danhmucText != '') {
       _danhmuc.removeWhere((element) => element['name'] == _danhmucText);
     }
+
     _danhmucText = _danhmuc.first['name'].toString();
     notifyListeners();
   }
-//  them selected item into list 
+
+//  them selected item into list
   void addSelectedItem(Data data) {
-    
     _selectedItem.add(data);
     print(_selectedItem);
     notifyListeners();
   }
 
-// xoa item trong selected list 
+// xoa item trong selected list
   void removeSeletedItem(Data data) {
     _selectedItem.remove(data);
     print(_selectedItem);
     notifyListeners();
   }
+
 // lay danh sach co phieu trong danh muc
   List<Data> getDanhMucSelectedItem() {
-    if (_danhmuc.isNotEmpty) {
+    if (_danhmuc.isNotEmpty || _danhmucText != '') {
       Map<String, dynamic> data =
           _danhmuc.firstWhere((element) => element['name'] == _danhmucText);
       if (data.isNotEmpty) {
@@ -131,7 +136,6 @@ class AppChungKhoanProvider extends ChangeNotifier {
     notifyListeners();
     return [];
   }
-
 
 // chage isSave de hien thi trong trang them
   int changeIsSave(int check) {
@@ -146,12 +150,13 @@ class AppChungKhoanProvider extends ChangeNotifier {
     return 0;
   }
 
-  void setDanhMucText(String danhmuctext){
+  // gan danh muc text de hien thi
+  void setDanhMucText(String danhmuctext) {
     _danhmucText = danhmuctext;
     notifyListeners();
   }
 
-// lay data tu api 
+// lay data tu api
   Future addChungKhoanData() async {
     DataChungKhoan? getData = await _api.getChungKhoan('');
     _chungKhoanData = getData!.chungKhoanInfoList;
@@ -159,49 +164,76 @@ class AppChungKhoanProvider extends ChangeNotifier {
     // print(' call add list chung khoan ${_chungKhoanData[1].isSave}');
     notifyListeners();
   }
+
 // sap xep chung khoan theo save hay chua
   void sortChungKhoanIsSave() {
     _chungKhoanData.sort((a, b) => b.isSave!.compareTo(a.isSave!));
   }
 
-// cac chuc nang khi nhan tren man hinh 
+// cac chuc nang khi nhan tren man hinh
   void changeIndex(String indexCode) {
-    _chungKhoanDataSort.addAll(_chungKhoanData.toList());
+    // _chungKhoanDataSort.addAll(_chungKhoanData.toList());
     if (_currentIndex != indexCode) {
       _currentIndex = indexCode;
     }
-    // switch (indexCode) {
-    //   case IndexCodeConst.vn30:
-    //     _chungKhoanDataSort.where((element) => element.exchange == indexCode);
-    //     // notifyListeners();
-    //     break;
-    //   case IndexCodeConst.hnx:
-    //     _chungKhoanDataSort.where((element) => element.exchange == indexCode);
-    //     // notifyListeners();
-    //     break;
-    //   case IndexCodeConst.hsx:
-    //     _chungKhoanDataSort.where((element) => element.exchange == indexCode);
-    //     // notifyListeners();
-    //     break;
-    //   case IndexCodeConst.hnx30:
-    //     _chungKhoanDataSort.where((element) => element.exchange == indexCode);
-    //     // notifyListeners();
-    //     break;
-    //   case IndexCodeConst.upcom:
-    //     _chungKhoanDataSort.where((element) => element.exchange == indexCode);
-    //     // notifyListeners();
-    //     break;
-    //   case SortCodeConst.az:
-    //     _chungKhoanDataSort.sort((a, b) => (a.fullname!.compareTo(b.fullname!)));
-    //   case SortCodeConst.gia:
-    //     _chungKhoanDataSort
-    //         .sort((a, b) => (a.closePrice!.compareTo(b.closePrice!)));
-    //   case SortCodeConst.khoiluong:
-    //     _chungKhoanDataSort
-    //         .sort((a, b) => (a.totalTrading!.compareTo(b.totalTrading!)));
-    //   default:
-    //     break;
-    // }
+
+    notifyListeners();
+  }
+
+  // tim co phieu co trong san nhat dinh
+  void findByIndex(String indexcode) {
+    _chungKhoanDataSort.clear();
+    _chungKhoanDataSort.addAll(getDanhMucSelectedItem()
+        .where((element) => element.exchange == indexcode));
+  }
+
+  // sap xep co phieu bang cac nut chuc nang sap xep
+  void sortFunction(String sortCode) {
+    switch (sortCode) {
+      case SortCodeConst.az:
+        _chungKhoanDataSort
+            .sort((a, b) => (a.fullname!.compareTo(b.fullname!)));
+      case SortCodeConst.gia:
+        _chungKhoanDataSort
+            .sort((a, b) => (a.closePrice!.compareTo(b.closePrice!)));
+      case SortCodeConst.khoiluong:
+        _chungKhoanDataSort
+            .sort((a, b) => (a.totalTrading!.compareTo(b.totalTrading!)));
+      default:
+        break;
+    }
+    print(_chungKhoanDataSort);
+    notifyListeners();
+  }
+
+  // chuc nang tim co phieu trong san
+  void functionButton(String indexCode) {
+    _chungKhoanDataSort.clear();
+    switch (indexCode) {
+      case IndexCodeConst.vn30:
+        findByIndex(IndexCodeConst.vn30);
+        break;
+      case IndexCodeConst.hnx:
+        findByIndex(IndexCodeConst.hnx);
+
+        break;
+      case IndexCodeConst.hsx:
+        findByIndex(IndexCodeConst.hsx);
+
+        break;
+      case IndexCodeConst.hnx30:
+        findByIndex(IndexCodeConst.hnx30);
+
+        break;
+      case IndexCodeConst.upcom:
+        findByIndex(IndexCodeConst.upcom);
+
+        break;
+      case IndexCodeConst.hose:
+        findByIndex(IndexCodeConst.hose);
+
+        break;
+    }
     notifyListeners();
   }
 }

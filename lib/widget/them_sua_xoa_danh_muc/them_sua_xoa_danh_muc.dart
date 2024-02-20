@@ -1,7 +1,19 @@
+
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_app/model/provider/app_provider.dart';
+import 'package:stock_app/route/routes.dart';
 
-final cupertinoAction = CupertinoActionSheet(
+import '../../route/router_name_constant.dart';
+CupertinoActionSheet buildThemSuaXoa(BuildContext context){
+
+AppChungKhoanProvider appProvider = context.read<AppChungKhoanProvider>();
+
+return  CupertinoActionSheet(
   actions: <Widget>[
     Container(
       height: 50,
@@ -12,7 +24,9 @@ final cupertinoAction = CupertinoActionSheet(
      Container(
       height: 55,    
       color: const Color.fromARGB(255, 255, 255, 255),
-      child:  curpertinoAction(onPressed: (){}, text: 'Them Danh Muc', fontSize: 16) ,
+      child:  curpertinoAction(onPressed: (){
+        
+      }, text: 'Them Danh Muc', fontSize: 16) ,
     ),
      Container(
       height: 55,
@@ -23,7 +37,10 @@ final cupertinoAction = CupertinoActionSheet(
      Container(
       height: 55,
       color: const Color.fromARGB(255, 255, 255, 255),
-      child:  curpertinoAction(onPressed: (){}, text: 'Xoa Danh Muc', xoa: false,  fontSize: 16),
+      child:  curpertinoAction(onPressed: (){
+        appProvider.deleteDanhMuc();
+
+      }, text: 'Xoa Danh Muc', xoa: false,  fontSize: 16),
     ),
   ],
   cancelButton: Container(
@@ -37,6 +54,8 @@ final cupertinoAction = CupertinoActionSheet(
   )
   ,
 );
+
+}
 
 
 

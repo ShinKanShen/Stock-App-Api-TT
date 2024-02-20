@@ -12,6 +12,7 @@ Widget buildIndexButton(BuildContext context, String indexCode){
       return TextButton(
         onPressed: (){
           _appChungKhoanProvider.changeIndex(indexCode);
+          _appChungKhoanProvider.functionButton(indexCode);
         },
         style: TextButton.styleFrom(
           side: BorderSide(

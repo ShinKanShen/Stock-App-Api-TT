@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:stock_app/widget/button/button_widget.dart';
 import 'package:stock_app/widget/end_drawer/end_drawer.dart';
 import 'package:stock_app/widget/them_sua_xoa_danh_muc/them_sua_xoa_danh_muc.dart';
@@ -18,6 +19,15 @@ class ThiTruongScreen extends StatefulWidget {
 }
 
 class _ThiTruongScreenState extends State<ThiTruongScreen> {
+
+ late AppChungKhoanProvider appProvider;
+  @override
+  void initState() {
+    appProvider = context.read<AppChungKhoanProvider>();
+    //appProvider.addDataForSort();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +55,7 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
                       IconButton(
                         onPressed: (){
 
-                          showCupertinoModalPopup(context: context, builder: (context)=> cupertinoAction);
+                          showCupertinoModalPopup(context: context, builder: (context)=> buildThemSuaXoa(context));
                         }, 
                         icon: const Icon(Icons.add),
                         iconSize: 24,

@@ -84,7 +84,7 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                 }
                 else{
                   _appProvider.addDanhMuc(textEditingController.text);
-                   
+                   _appProvider.addDataForSort();
                   if(_appProvider.findDanhMucItem(textEditingController.text)){
                     
                    textEditingController.clear();

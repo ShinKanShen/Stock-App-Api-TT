@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stock_app/main_menu.dart';
 
+import 'route/routes.dart';
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -11,9 +13,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: "Stock App",
-      
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return Overlay(

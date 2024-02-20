@@ -11,6 +11,7 @@ Widget buildSortButton(BuildContext context, String sortCode){
       return ElevatedButton(
         onPressed: (){
           _appProvider.changeIndex(sortCode);
+          _appProvider.sortFunction(sortCode);
         }, 
         style: ElevatedButton.styleFrom(
           padding:  const EdgeInsets.only(left: 6, top: 12, bottom: 12, right: 5),

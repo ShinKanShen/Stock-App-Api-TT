@@ -16,6 +16,7 @@ Widget chonDanhMucListView(BuildContext context){
             return GestureDetector(
               onTap: () {
                 _appProvider.setDanhMucText(danhmuc['name']);
+                _appProvider.addDataForSort();
                 Navigator.pop(context);
               },
               child: Container(
@@ -34,7 +35,8 @@ Widget chonDanhMucListView(BuildContext context){
                           ),),
               
                           const Icon(
-                            Icons.arrow_forward_ios_outlined, size: 24, 
+                            Icons.arrow_forward_ios_outlined, size: 20, 
+                            color: Colors.black45,
                           )
                         ],
                       ),

@@ -6,8 +6,9 @@ import 'package:stock_app/model/provider/app_provider.dart';
 import '../../../model/api/chung_khoan/chung_khoan_info.dart';
 
 Widget danhMucSelectedListView(BuildContext context){
-  return Selector<AppChungKhoanProvider, List<Data>>(
-    selector: (_,p)=> p.getDanhMucSelectedItem(),
+  return Selector<AppChungKhoanProvider, List<Data>> (
+    selector: (_,p)=> p.chungKhoanDataSort,
+    shouldRebuild: (p,n)=> true,
     builder: (context, danhMucs, child){
       if(danhMucs.isEmpty){
         return Container();

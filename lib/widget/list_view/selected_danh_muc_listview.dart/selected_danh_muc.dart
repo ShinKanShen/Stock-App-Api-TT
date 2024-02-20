@@ -12,11 +12,6 @@ Widget danhMucSelectedListView(BuildContext context){
       if(danhMucs.isEmpty){
         return Container();
       }else{
-        if(danhMucs==null){
-          return Container();
-        }else{
-
-        }
       return Expanded(
         child: ListView.builder(
           itemCount: danhMucs.length??0,

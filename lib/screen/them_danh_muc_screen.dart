@@ -20,6 +20,7 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
     textEditingController = TextEditingController();
     _appProvider= context.read<AppChungKhoanProvider>();
     _appProvider.addChungKhoanData();
+    
     super.initState();
   }
 
@@ -75,14 +76,20 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
             ElevatedButton(
               onPressed: (){
 
-                if(textEditingController.text.isEmpty || _appProvider.findDanhMucItem(textEditingController.text) ){
-                  print("ten da bi trung or rong");
+                // if(textEditingController.text.isEmpty || _appProvider.findDanhMucItem(textEditingController.text) ){
+                //   print("ten da bi trung or rong");
+                // }
+                if(textEditingController.text.isEmpty ){
+                  print("ten khong rong");
                 }
                 else{
                   _appProvider.addDanhMuc(textEditingController.text);
                    
                   if(_appProvider.findDanhMucItem(textEditingController.text)){
+                    
                    textEditingController.clear();
+                   _appProvider.setDefaultItem();
+                   _appProvider.clearSelectenList();
                     // print('them thanh cong');
                     // print(_appProvider.danhMuc);
                   }

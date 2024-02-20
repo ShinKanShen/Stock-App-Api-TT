@@ -27,10 +27,10 @@ class _BangGiaScreenState extends State<BangGiaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("List Chung Khoan Screen"),
+          title:const  Text("List Chung Khoan Screen"),
         ),
         body: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: FutureBuilder(
               future: _apiService.getChungKhoan(''),
               builder: (context, snapshot) {

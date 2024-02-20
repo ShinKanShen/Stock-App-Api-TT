@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:stock_app/widget/button/button_widget.dart';
+// import 'package:stock_app/widget/button/button_widget.dart';
 import 'package:stock_app/widget/end_drawer/end_drawer.dart';
+import 'package:stock_app/widget/them_sua_xoa_danh_muc/them_sua_xoa_danh_muc.dart';
 
 import '../model/provider/app_provider.dart';
 import '../widget/button/build_index_button.dart';
@@ -41,7 +43,10 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       IconButton(
-                        onPressed: (){}, 
+                        onPressed: (){
+
+                          showCupertinoModalPopup(context: context, builder: (context)=> cupertinoAction);
+                        }, 
                         icon: const Icon(Icons.add),
                         iconSize: 24,
                         style: ElevatedButton.styleFrom(
@@ -87,6 +92,10 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
                         width: 8,
                       ),
                       buildIndexButton(context, IndexCodeConst.upcom),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      buildIndexButton(context, IndexCodeConst.hose),
                       const SizedBox(
                         width: 8,
                       ),

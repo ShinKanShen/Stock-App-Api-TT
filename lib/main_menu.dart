@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:stock_app/screen/thi_truong_screen.dart';
 
-import 'package:stock_app/widget/end_drawer/end_drawer.dart';
+// import 'package:stock_app/widget/end_drawer/end_drawer.dart';
 
 import 'screen/bang_gia_screen.dart';
 import 'screen/giao_dich_screen.dart';

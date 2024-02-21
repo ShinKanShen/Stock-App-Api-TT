@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stock_app/widget/icons/search_icon.dart';
 import 'package:stock_app/widget/list_view/chon_danh_muc/chon_danh_muc_listview.dart';
 
-Widget buildBottomSheet(BuildContext context){
+Widget buildBottomSheet(BuildContext context) {
   return Container(
     padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
     child: Column(
@@ -9,29 +10,30 @@ Widget buildBottomSheet(BuildContext context){
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             const Text(
+            const SizedBox(
+              width: 35,
+            ),
+            const Text(
               "Chọn danh mục",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-           
             IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               icon: const Icon(
                 Icons.close,
-                size: 24,
+                size: 16,
               ),
               style: ElevatedButton.styleFrom(
-                  backgroundColor:const Color.fromARGB(255, 249, 249, 249)),
+                  backgroundColor: const Color.fromARGB(217, 236, 234, 234)),
             ),
           ],
         ),
-
-         const SizedBox(
+        const SizedBox(
           height: 16,
         ),
         TextField(
@@ -43,7 +45,9 @@ Widget buildBottomSheet(BuildContext context){
               color: Color.fromRGBO(0, 0, 0, 0.4),
               fontSize: 16,
             ),
-            prefixIcon: const Icon(Icons.gps_fixed_outlined),
+            prefixIcon: const Icon(
+              Icons.search,
+            ),
             enabledBorder: InputBorder.none,
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
@@ -63,16 +67,12 @@ Widget buildBottomSheet(BuildContext context){
   );
 }
 
-Future  showButtonSheet(BuildContext context){
+Future showButtonSheet(BuildContext context) {
   return showModalBottomSheet(
-    context: context, 
-    useRootNavigator: true,
-    backgroundColor:  Colors.white,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(
-        top: Radius.circular(20)
-      )
-    ),
-    builder: (context)=> buildBottomSheet(context)
-    );
+      context: context,
+      useRootNavigator: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      builder: (context) => buildBottomSheet(context));
 }

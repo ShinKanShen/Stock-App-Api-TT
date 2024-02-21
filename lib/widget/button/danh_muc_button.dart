@@ -9,16 +9,13 @@ Widget buildDanhMucSelec(BuildContext context) {
   return Selector<AppChungKhoanProvider, String>(
     selector: (_, p) => p.danhMucText,
     builder: (context, danhMucText, child) {
-      if (_appProvider.danhMucText == '') {
-       
-      }
+      if (_appProvider.danhMucText == '') {}
       return ElevatedButton(
           onPressed: () {
             showButtonSheet(context);
           },
           style: ElevatedButton.styleFrom(
-            padding:
-                const EdgeInsets.only(left: 10, right: 8),
+            padding: const EdgeInsets.only(left: 10, right: 8),
             fixedSize: const Size.fromHeight(32),
             backgroundColor: const Color.fromRGBO(40, 60, 145, 1),
             shape: RoundedRectangleBorder(
@@ -29,7 +26,9 @@ Widget buildDanhMucSelec(BuildContext context) {
             child: Row(
               children: [
                 Text(
-                  _appProvider.danhMucText==''?'Danh Muc yeu thich':_appProvider.danhMucText.toLowerCase() ,
+                  _appProvider.danhMucText == ''
+                      ? 'Danh Muc yeu thich'
+                      : _appProvider.danhMucText.toLowerCase(),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,

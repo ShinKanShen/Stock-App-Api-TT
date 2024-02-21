@@ -15,16 +15,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: "Stock App",
-      routerConfig: router,
+
       debugShowCheckedModeBanner: false,
-      builder: (context, child) {
-        return Overlay(
-          initialEntries: [
-            OverlayEntry(
-              builder:(context)=>const   MainMenu())
-          ],
-        );
-      },
+      routerConfig: AppRouter().router,
+      // routeInformationParser: AppRouter().router.routeInformationParser,
+      // routerDelegate: AppRouter().router.routerDelegate,
+      // builder: (context, child) {
+      //   return Overlay(
+      //     initialEntries: [
+      //       OverlayEntry(
+      //         builder:(context)=>const   MainMenu())
+      //     ],
+      //   );
+      // },
     );
   }
 }

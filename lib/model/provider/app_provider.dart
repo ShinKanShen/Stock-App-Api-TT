@@ -133,7 +133,9 @@ class AppChungKhoanProvider extends ChangeNotifier {
         return a;
       }
     }
-    notifyListeners();
+    // không cần thiết phải thông báo thực hiện thay đổi vì những chức năng kia đã thông
+    // báo thay đổi và rebuild lại rồi không cần thiết
+    // notifyListeners();
     return [];
   }
 

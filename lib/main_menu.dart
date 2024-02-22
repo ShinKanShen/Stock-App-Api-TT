@@ -31,7 +31,8 @@ class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const EndDrawerMenu(),
+      // appBar: AppBar(),
+      // endDrawer: const EndDrawerMenu(),
       //resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: PersistentTabView(

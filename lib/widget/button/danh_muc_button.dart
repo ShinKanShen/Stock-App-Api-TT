@@ -27,18 +27,19 @@ Widget buildDanhMucSelec(BuildContext context) {
               children: [
                 Text(
                   _appProvider.danhMucText == ''
-                      ? 'Danh Muc yeu thich'
+                      ? 'Danh Muc yeu thich '
                       : _appProvider.danhMucText.toLowerCase(),
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 4),
                   child: Icon(
                     Icons.keyboard_arrow_down,
                     color: Colors.white,
+                    size: 16,
                   ),
                 ),
               ],

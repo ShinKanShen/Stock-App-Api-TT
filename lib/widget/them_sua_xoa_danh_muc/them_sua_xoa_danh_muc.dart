@@ -14,7 +14,12 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
     actions: <Widget>[
       Container(
         height: 50,
-        color: const Color.fromRGBO(228, 228, 228, 1),
+        //color: const Color.fromRGBO(228, 228, 228, 1),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            //borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 0, color: Colors.white)),
+
         child: CupertinoActionSheetAction(
             onPressed: () {},
             child: const Text(
@@ -27,23 +32,39 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
       ),
       Container(
         height: 55,
-        color: const Color.fromARGB(255, 255, 255, 255),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            //borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 0, color: Colors.white)),
+
+        // color: const Color.fromARGB(255, 255, 255, 255),
         child: curpertinoAction(
-            onPressed: () {
-              context.pushNamed(MyAppRouterName.themDanhMuc);
-            },
-            text: 'Them Danh Muc',
-            fontSize: 16),
+          onPressed: () {
+            context.pushNamed(MyAppRouterName.themDanhMuc);
+          },
+          text: 'Them Danh Muc',
+          fontSize: 16,
+        ),
       ),
       Container(
         height: 55,
-        color: const Color.fromARGB(255, 255, 255, 255),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            //borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 0, color: Colors.white)),
+
+        //color: const Color.fromARGB(255, 255, 255, 255),
         child: curpertinoAction(
             onPressed: () {}, text: 'Chinh Sua Danh Muc', fontSize: 16),
       ),
       Container(
         height: 55,
-        color: const Color.fromARGB(255, 255, 255, 255),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            //borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 0, color: Colors.white)),
+
+        //color: const Color.fromARGB(255, 255, 255, 255),
         child: curpertinoAction(
             onPressed: () {
               appProvider.deleteDanhMuc();
@@ -57,7 +78,7 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
       height: 55,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: curpertinoAction(onPressed: () {}, text: 'Dong', fontSize: 16),
     ),
@@ -75,6 +96,7 @@ curpertinoAction(
       text,
       style: TextStyle(
           fontSize: fontSize ?? 14,
+          fontWeight: FontWeight.w400,
           color: xoa ?? true ? const Color.fromRGBO(0, 0, 0, 1) : Colors.red),
     ),
   );

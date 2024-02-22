@@ -45,7 +45,7 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
           Container(
             margin: const EdgeInsets.only(left: 16),
             child: SizedBox(
-              height: 35,
+              height: 40,
               child: Row(
                   // button plus
                   children: [
@@ -119,7 +119,7 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
             height: 16,
           ),
           Container(
-            height: 35,
+            height: 40,
             margin: const EdgeInsets.only(top: 4, bottom: 16, left: 16),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

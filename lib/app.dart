@@ -19,12 +19,15 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter().router,
       // routeInformationParser: AppRouter().router.routeInformationParser,
-      // routerDelegate: AppRouter().router.routerDelegate,
+
+      // routerDelegate: AppRouter().router.routerDelegate,ty7u
+
+      // loi A HeroController can not be shared by multiple Navigators.
+      //home: MainMenu(),
       // builder: (context, child) {
       //   return Overlay(
       //     initialEntries: [
-      //       OverlayEntry(
-      //         builder:(context)=>const   MainMenu())
+      //       OverlayEntry(builder: (context) => const MainMenu())
       //     ],
       //   );
       // },

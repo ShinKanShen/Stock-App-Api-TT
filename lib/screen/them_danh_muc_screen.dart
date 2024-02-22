@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/model/provider/app_provider.dart';
+import 'package:stock_app/route/router_name_constant.dart';
 
 import '../widget/list_view/them_danh_muc/them_danh_muc_listview.dart';
 
@@ -34,92 +36,125 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        margin: const EdgeInsets.only(left: 16, right: 16),
-        child: Column(
-          children: [
-            TextField(
-              controller: textEditingController,
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                      onPressed: () {
-                        textEditingController.clear();
-                      },
-                      icon: const Icon(
-                        Icons.clear,
-                        size: 18,
-                      )),
-                  filled: true,
-                  enabledBorder: InputBorder.none,
-                  hintText: 'Ten danh muc',
-                  hintStyle: const TextStyle(),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(
-                        style: BorderStyle.solid,
-                        width: 0.5,
-                      ))),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  // if(textEditingController.text.isEmpty || _appProvider.findDanhMucItem(textEditingController.text) ){
-                  //   print("ten da bi trung or rong");
-                  // }
-                  if (textEditingController.text.isEmpty) {
-                    print("ten khong rong");
-                  } else {
-                    _appProvider.addDanhMuc(textEditingController.text);
-                    _appProvider.addDataForSort();
-                    if (_appProvider
-                        .findDanhMucItem(textEditingController.text)) {
-                      textEditingController.clear();
-                      _appProvider.setDefaultItem();
-                      _appProvider.clearSelectenList();
-                      // print('them thanh cong');
-                      // print(_appProvider.danhMuc);
-                    }
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: const Color.fromRGBO(40, 60, 145, 1),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0))),
-                child: const Text('Xac Nhan',
-                    style: TextStyle(color: Colors.white, fontSize: 16))),
-            const SizedBox(
-              height: 8,
-            ),
-            TextField(
-                decoration: InputDecoration(
-                    hintText: "Bạn đang tìm kiếm gì",
-                    suffixIcon: IconButton(
-                        onPressed: () {
+      //backgroundColor: const Color.fromRGBO(238, 238, 238, 1),
+      body: Column(
+        children: [
+          Container(
+            height: 10,
+            width: double.infinity,
+            color: const Color.fromRGBO(238, 238, 238, 1),
+          ),
+          Container(
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+            child: Column(
+              children: [
+                TextField(
+                  controller: textEditingController,
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            textEditingController.clear();
+                          },
+                          icon: const Icon(
+                            Icons.clear,
+                            size: 18,
+                          )),
+                      //filled: true,
+                      enabledBorder: InputBorder.none,
+                      hintText: 'Ten danh muc',
+                      hintStyle: const TextStyle(),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            style: BorderStyle.solid,
+                            width: 0.5,
+                          ))),
+                ),
+                const Divider(
+                  thickness: 0.2,
+                  height: 5,
+                  color: Colors.black,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      // if(textEditingController.text.isEmpty || _appProvider.findDanhMucItem(textEditingController.text) ){
+                      //   print("ten da bi trung or rong");
+                      // }
+                      if (textEditingController.text.isEmpty) {
+                        print("ten khong rong");
+                      } else {
+                        _appProvider.addDanhMuc(textEditingController.text);
+                        _appProvider.addDataForSort();
+                        if (_appProvider
+                            .findDanhMucItem(textEditingController.text)) {
+                          context.pushNamed(MyAppRouterName.thitruong);
                           textEditingController.clear();
-                        },
-                        icon: const Icon(
-                          Icons.clear,
-                          size: 18,
-                        )),
-                    hintStyle:
-                        const TextStyle(color: Color.fromRGBO(0, 0, 0, 0.4)),
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      size: 24,
-                    ),
-                    enabledBorder: InputBorder.none)),
-            const Divider(
-              thickness: 0.2,
-              height: 20,
-              color: Colors.black,
+                          _appProvider.setDefaultItem();
+                          _appProvider.clearSelectenList();
+                          // print('them thanh cong');
+                          // print(_appProvider.danhMuc);
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        backgroundColor: const Color.fromRGBO(40, 60, 145, 1),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5))),
+                    child: const Text('Xac Nhan',
+                        style: TextStyle(color: Colors.white, fontSize: 16))),
+              ],
             ),
-            themDanhMucListView(context),
-          ],
-        ),
+          ),
+          Container(
+            height: 10,
+            width: double.infinity,
+            color: const Color.fromRGBO(238, 238, 238, 1),
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 12, bottom: 12),
+              child: Column(
+                children: [
+                  TextField(
+                      decoration: InputDecoration(
+                          hintText: "Bạn đang tìm kiếm gì",
+                          prefixIconConstraints:
+                              const BoxConstraints(maxHeight: 18, maxWidth: 30),
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                textEditingController.clear();
+                              },
+                              icon: const Icon(
+                                Icons.clear,
+                                size: 18,
+                              )),
+                          hintStyle: const TextStyle(
+                              color: Color.fromRGBO(0, 0, 0, 0.4)),
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            size: 24,
+                          ),
+                          // contentPadding: const EdgeInsets.only(
+                          //     top: 8, bottom: 8, left: 0, right: 0),
+                          enabledBorder: InputBorder.none)),
+                  const Divider(
+                    thickness: 0.2,
+                    height: 20,
+                    color: Colors.black,
+                  ),
+                  themDanhMucListView(context),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

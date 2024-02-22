@@ -23,7 +23,7 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
         child: CupertinoActionSheetAction(
             onPressed: () {},
             child: const Text(
-              'Thao Tac',
+              'Thao tác',
               style: TextStyle(
                 fontSize: 14,
                 color: Color.fromRGBO(0, 0, 0, 0.4),
@@ -40,9 +40,10 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
         // color: const Color.fromARGB(255, 255, 255, 255),
         child: curpertinoAction(
           onPressed: () {
+            Navigator.of(context).pop();
             context.pushNamed(MyAppRouterName.themDanhMuc);
           },
-          text: 'Them Danh Muc',
+          text: 'Thêm danh mục',
           fontSize: 16,
         ),
       ),
@@ -55,7 +56,7 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
 
         //color: const Color.fromARGB(255, 255, 255, 255),
         child: curpertinoAction(
-            onPressed: () {}, text: 'Chinh Sua Danh Muc', fontSize: 16),
+            onPressed: () {}, text: 'Chỉnh sửa danh mục', fontSize: 16),
       ),
       Container(
         height: 55,
@@ -68,8 +69,9 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
         child: curpertinoAction(
             onPressed: () {
               appProvider.deleteDanhMuc();
+              Navigator.of(context).pop();
             },
-            text: 'Xoa Danh Muc',
+            text: 'Xóa Danh Mục',
             xoa: false,
             fontSize: 16),
       ),
@@ -80,7 +82,7 @@ CupertinoActionSheet buildThemSuaXoa(BuildContext context) {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: curpertinoAction(onPressed: () {}, text: 'Dong', fontSize: 16),
+      child: curpertinoAction(onPressed: () {}, text: 'Đóng', fontSize: 16),
     ),
   );
 }

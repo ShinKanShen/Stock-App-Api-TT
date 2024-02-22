@@ -25,8 +25,11 @@ enum LoadState {
 
 class SortCodeConst {
   static const String az = 'A-Z';
-  static const String gia = 'Gia';
-  static const String khoiluong = 'Khoi Luong';
+  static const String gia = 'Giá';
+  static const String khoiluong = 'Khối lượng';
+  static const String chungkhoan = 'Chứng khoán';
+  static const String tintucs = 'Tin tức';
+  static const String chucnang = 'Chức năng';
 }
 
 class AppChungKhoanProvider extends ChangeNotifier {
@@ -58,6 +61,18 @@ class AppChungKhoanProvider extends ChangeNotifier {
   // tra lai co phieu nhu ban dau khi ma thay doi gia tri
   late int _selectItemCount;
   int get selectItemCount => _selectItemCount;
+  // list co phieu cho search
+  List<Data> search = [];
+
+  void searchList(String value) {
+    search = List.from(_chungKhoanData);
+
+    search = _chungKhoanData
+        .where((element) =>
+            element.symbol!.toLowerCase().contains(value.toLowerCase()))
+        .toList();
+    notifyListeners();
+  }
 
   // add danh muc
   void addDanhMuc(var tendanhmuc) {

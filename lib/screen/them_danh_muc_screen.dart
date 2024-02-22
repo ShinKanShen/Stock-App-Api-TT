@@ -30,7 +30,7 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Them Danh Muc Moi",
+          "Thêm danh mục mới",
           style: TextStyle(
               fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
         ),
@@ -62,7 +62,7 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                           )),
                       //filled: true,
                       enabledBorder: InputBorder.none,
-                      hintText: 'Ten danh muc',
+                      hintText: 'Tên danh mục',
                       hintStyle: const TextStyle(),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -106,7 +106,7 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5))),
-                    child: const Text('Xac Nhan',
+                    child: const Text('Xác nhận',
                         style: TextStyle(color: Colors.white, fontSize: 16))),
               ],
             ),

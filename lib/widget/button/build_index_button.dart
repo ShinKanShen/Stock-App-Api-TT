@@ -14,10 +14,13 @@ Widget buildIndexButton(BuildContext context, String indexCode) {
             _appChungKhoanProvider.functionButton(indexCode);
           },
           style: TextButton.styleFrom(
-              side: BorderSide(
-                color: indexCode == currentIndexCode
-                    ? Colors.red
-                    : const Color.fromRGBO(230, 230, 230, 1),
+              backgroundColor: indexCode == currentIndexCode
+                  ? const Color.fromRGBO(40, 60, 145, 1)
+                  : Colors.white,
+              side: const BorderSide(
+                // color: indexCode == currentIndexCode
+                //     ? Colors.red
+                //     : const Color.fromRGBO(230, 230, 230, 1),
                 width: 1,
                 style: BorderStyle.solid,
               ),
@@ -25,7 +28,10 @@ Widget buildIndexButton(BuildContext context, String indexCode) {
                   borderRadius: BorderRadius.circular(4))),
           child: Text(
             indexCode,
-            style: const TextStyle(color: Color.fromRGBO(0, 0, 0, 0.4)),
+            style: TextStyle(
+                color: indexCode == currentIndexCode
+                    ? Colors.white
+                    : const Color.fromRGBO(0, 0, 0, 0.4)),
           ));
     },
   );

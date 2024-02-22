@@ -27,7 +27,7 @@ Widget buildDanhMucSelec(BuildContext context) {
               children: [
                 Text(
                   _appProvider.danhMucText == ''
-                      ? 'Danh Muc yeu thich '
+                      ? 'Danh mục yêu thích '
                       : _appProvider.danhMucText.toLowerCase(),
                   style: const TextStyle(
                       color: Colors.white,

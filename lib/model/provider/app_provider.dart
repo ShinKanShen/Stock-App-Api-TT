@@ -51,7 +51,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
   String get danhMucText => _danhmucText;
 
   // danh muc khi them va cac chuc nang lien quan
-  final List<Map<String, dynamic>> _danhmuc = [];
+  List<Map<String, dynamic>> _danhmuc = [];
   List<Map<String, dynamic>> get danhMuc => _danhmuc;
   // luu co phieu khi ta nhan luu khi them
 
@@ -63,7 +63,25 @@ class AppChungKhoanProvider extends ChangeNotifier {
   int get selectItemCount => _selectItemCount;
   // list co phieu cho search
   List<Data> search = [];
+  //List<Map<String, dynamic>> searchDanhMucs = [];
 
+  // void addDanhMucName() {
+  //   searchDanhMucs = List.from(_danhmuc);
+  // }
+
+  // // tim kiem danh muc co phieu
+  // void searchDanhMuc(String value) {
+  //   searchDanhMucs = _danhmuc
+  //       .where((element) => element['name']!
+  //           .toString()
+  //           .toLowerCase()
+  //           .contains(value.toLowerCase()))
+  //       .toList();
+
+  //   notifyListeners();
+  // }
+
+  // tim kiem ten co phieu
   void searchList(String value) {
     search = List.from(_chungKhoanData);
 

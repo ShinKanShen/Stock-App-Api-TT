@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_app/model/provider/app_provider.dart';
 import 'package:stock_app/widget/icons/search_icon.dart';
 import 'package:stock_app/widget/list_view/chon_danh_muc/chon_danh_muc_listview.dart';
 
 Widget buildBottomSheet(BuildContext context) {
+  //AppChungKhoanProvider appProvider = context.read<AppChungKhoanProvider>();
+  //appProvider.addDanhMucName();
   return Container(
     padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
     child: Column(
@@ -37,6 +41,7 @@ Widget buildBottomSheet(BuildContext context) {
           height: 16,
         ),
         TextField(
+          //onChanged: (value) => appProvider.searchDanhMuc(value),
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromRGBO(238, 238, 238, 1),

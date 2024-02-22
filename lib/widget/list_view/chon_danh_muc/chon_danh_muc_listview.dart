@@ -13,16 +13,17 @@ Widget chonDanhMucListView(BuildContext context) {
               itemBuilder: (context, index) {
                 final danhmuc = danhMucs[index];
                 return GestureDetector(
-                  onTap: () {
-                    _appProvider.setDanhMucText(danhmuc['name']);
-                    _appProvider.addDataForSort();
-                    Navigator.pop(context);
-                  },
+                  onTap: () {},
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     // color: Colors.white,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        _appProvider.setDanhMucText(danhmuc['name']);
+                        _appProvider.addDataForSort();
+                        print('heoolo');
+                        Navigator.pop(context);
+                      },
                       child: Column(
                         children: [
                           Row(

@@ -2,10 +2,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:stock_app/services/api_chung_khoan_services.dart';
 
 import '../api/chung_khoan/chung_khoan_info.dart';
 import '../api/chung_khoan/data_chung_khoan.dart';
+import '../hive/box/boxes.dart';
+import '../hive/model/user_model.dart';
 
 class IndexCodeConst {
   static const String vn30 = "VN30";
@@ -63,6 +66,8 @@ class AppChungKhoanProvider extends ChangeNotifier {
   int get selectItemCount => _selectItemCount;
   // list co phieu cho search
   List<Data> search = [];
+  late Box users;
+
   //List<Map<String, dynamic>> searchDanhMucs = [];
 
   // void addDanhMucName() {
@@ -80,6 +85,20 @@ class AppChungKhoanProvider extends ChangeNotifier {
 
   //   notifyListeners();
   // }
+//
+  List getUserBox() {
+    return userBox.values.toList();
+  }
+
+  void addBox(String key, User user) {
+    userBox.put(key, user);
+    notifyListeners();
+  }
+
+  void deleteUserBox(int index) {
+    userBox.deleteAt(index);
+    notifyListeners();
+  }
 
   // tim kiem ten co phieu
   void searchList(String value) {

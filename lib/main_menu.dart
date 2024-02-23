@@ -34,7 +34,7 @@ class _MainMenuState extends State<MainMenu> {
     return Scaffold(
       // appBar: AppBar(),
       // endDrawer: const EndDrawerMenu(),
-      //resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: PersistentTabView(
         context,

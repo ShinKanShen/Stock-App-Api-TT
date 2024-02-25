@@ -1,9 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:stock_app/model/provider/app_provider.dart';
 
-import '../model/api/chung_khoan/chung_khoan_info.dart';
 import '../modules/tap_page/hien_thi_user_box/hien_thi_user.dart';
 import '../modules/tap_page/them_user_box/them_user_tab.dart';
 
@@ -16,12 +12,10 @@ class GiaoDichScreen extends StatefulWidget {
 
 class _GiaoDichScreenState extends State<GiaoDichScreen>
     with SingleTickerProviderStateMixin {
-  late AppChungKhoanProvider _appProvider;
   late TabController tabController;
 
   @override
   void initState() {
-    _appProvider = context.read<AppChungKhoanProvider>();
     tabController = TabController(length: 5, vsync: this);
     // _appProvider.addChungKhoanData();
     // _appProvider.getDanhMucSelectedItem();

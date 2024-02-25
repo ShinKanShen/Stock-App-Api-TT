@@ -46,6 +46,7 @@ class _HienThiUserState extends State<HienThiUser> {
                 itemBuilder: (BuildContext context, int index) {
                   User user = users[index];
                   return ListTile(
+                    onTap: () {},
                     leading: IconButton(
                         onPressed: () {
                           appProvider.deleteUserBox(index);

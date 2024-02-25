@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:stock_app/model/provider/app_provider.dart';
-import 'package:stock_app/widget/icons/search_icon.dart';
+
 import 'package:stock_app/widget/list_view/chon_danh_muc/chon_danh_muc_listview.dart';
 
 Widget buildBottomSheet(BuildContext context) {

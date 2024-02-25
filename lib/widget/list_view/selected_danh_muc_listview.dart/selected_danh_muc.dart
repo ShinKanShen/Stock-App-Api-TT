@@ -15,7 +15,7 @@ Widget danhMucSelectedListView(BuildContext context) {
       } else {
         return Expanded(
             child: ListView.builder(
-                itemCount: danhMucs.length ?? 0,
+                itemCount: danhMucs.length,
                 itemBuilder: (context, index) {
                   final data = danhMucs[index];
                   return Container(

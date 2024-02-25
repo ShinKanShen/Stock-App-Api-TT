@@ -54,7 +54,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
   String get danhMucText => _danhmucText;
 
   // danh muc khi them va cac chuc nang lien quan
-  List<Map<String, dynamic>> _danhmuc = [];
+  final List<Map<String, dynamic>> _danhmuc = [];
   List<Map<String, dynamic>> get danhMuc => _danhmuc;
   // luu co phieu khi ta nhan luu khi them
 
@@ -85,7 +85,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
 
   //   notifyListeners();
   // }
-//
+
   List getUserBox() {
     return userBox.values.toList();
   }
@@ -164,14 +164,14 @@ class AppChungKhoanProvider extends ChangeNotifier {
 //  them selected item into list
   void addSelectedItem(Data data) {
     _selectedItem.add(data);
-    print(_selectedItem);
+    //print(_selectedItem);
     notifyListeners();
   }
 
 // xoa item trong selected list
   void removeSeletedItem(Data data) {
     _selectedItem.remove(data);
-    print(_selectedItem);
+    //print(_selectedItem);
     notifyListeners();
   }
 
@@ -256,7 +256,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
       default:
         break;
     }
-    print(_chungKhoanDataSort);
+    //print(_chungKhoanDataSort);
     notifyListeners();
   }
 

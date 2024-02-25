@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/model/provider/app_provider.dart';
-import 'package:stock_app/route/routes.dart';
 
 import '../../route/router_name_constant.dart';
 

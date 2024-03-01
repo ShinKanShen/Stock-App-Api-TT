@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_app/model/hive/model/danhmuc/data_model.dart';
 import 'package:stock_app/model/provider/app_provider.dart';
 
 import '../../../model/api/chung_khoan/chung_khoan_info.dart';
 
 Widget themDanhMucListView(BuildContext context) {
   AppChungKhoanProvider _appProvider = context.read<AppChungKhoanProvider>();
+
   return Selector<AppChungKhoanProvider, List<Data>>(
     selector: (_, p) => p.getChungKhoan,
     shouldRebuild: (p, n) => true,
@@ -75,6 +77,17 @@ Widget themDanhMucListView(BuildContext context) {
                                           .getChungKhoan[index].isSave ==
                                       1) {
                                     _appProvider.addSelectedItem(data);
+                                    Data2 data2 = Data2(
+                                        data.change ?? 0,
+                                        data.changePercent ?? 0,
+                                        data.closePrice ?? 0,
+                                        data.exchange ?? '',
+                                        data.fullname ?? '',
+                                        data.id ?? '',
+                                        data.isSave ?? 0,
+                                        data.symbol ?? '',
+                                        data.totalTrading ?? 0);
+                                    _appProvider.selectList.add(data2);
                                   } else {
                                     _appProvider.removeSeletedItem(data);
                                   }

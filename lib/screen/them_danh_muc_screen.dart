@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_app/model/hive/box/boxes.dart';
+import 'package:stock_app/model/hive/model/danhmuc/danh_muc_model.dart';
 import 'package:stock_app/model/provider/app_provider.dart';
 import 'package:stock_app/route/router_name_constant.dart';
 
@@ -84,11 +86,20 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                       // if(textEditingController.text.isEmpty || _appProvider.findDanhMucItem(textEditingController.text) ){
                       //   print("ten da bi trung or rong");
                       // }
-                      if (textEditingController.text.isEmpty) {
+
+                      if (textEditingController.text.isEmpty ||
+                          _appProvider
+                              .findDanhMucItem(textEditingController.text)) {
                         print("ten khong rong");
                       } else {
                         _appProvider.addDanhMuc(textEditingController.text);
                         _appProvider.addDataForSort();
+                        _appProvider.addDanhMucBox(
+                            'key_${textEditingController.text}',
+                            textEditingController.text);
+                        print('${_appProvider.getDanhMucBox()[0]}' +
+                            'ten danh muc trong box');
+
                         if (_appProvider
                             .findDanhMucItem(textEditingController.text)) {
                           context.pushNamed(MyAppRouterName.thitruong);
@@ -99,6 +110,8 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                           // print(_appProvider.danhMuc);
                         }
                       }
+                      print('${_appProvider.getDanhMucBox()}' +
+                          'ten danh muc trong box 2');
                     },
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),

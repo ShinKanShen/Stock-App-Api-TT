@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_app/model/hive/box/boxes.dart';
 // import 'package:stock_app/widget/button/button_widget.dart';
 import 'package:stock_app/widget/end_drawer/end_drawer.dart';
 import 'package:stock_app/widget/them_sua_xoa_danh_muc/them_sua_xoa_danh_muc.dart';
@@ -23,6 +24,10 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
   @override
   void initState() {
     appProvider = context.read<AppChungKhoanProvider>();
+    if (danhMucBox.isNotEmpty) {
+      appProvider.addBoxToDanhMuc();
+    }
+
     //appProvider.addDataForSort();
     super.initState();
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_app/model/provider/app_provider.dart';
 import 'package:stock_app/screen/thi_truong_screen.dart';
 
 // import 'package:stock_app/widget/end_drawer/end_drawer.dart';
@@ -19,7 +21,7 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   late PersistentTabController _controller;
-  // late HeroControllerScope _heroControllerScope;
+  late AppChungKhoanProvider appProvider;
 
   @override
   void initState() {

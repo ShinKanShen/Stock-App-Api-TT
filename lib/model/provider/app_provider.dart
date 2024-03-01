@@ -3,12 +3,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:stock_app/model/hive/model/danhmuc/danh_muc_model.dart';
 import 'package:stock_app/services/api_chung_khoan_services.dart';
 
+import '../hive/model/danhmuc/data_model.dart';
 import '../api/chung_khoan/chung_khoan_info.dart';
 import '../api/chung_khoan/data_chung_khoan.dart';
 import '../hive/box/boxes.dart';
-import '../hive/model/user_model.dart';
+import '../hive/model/user/user_model.dart';
 
 class IndexCodeConst {
   static const String vn30 = "VN30";
@@ -67,6 +69,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
   // list co phieu cho search
   List<Data> search = [];
   late Box users;
+  List<Data2> selectList = [];
 
   //List<Map<String, dynamic>> searchDanhMucs = [];
 
@@ -85,6 +88,57 @@ class AppChungKhoanProvider extends ChangeNotifier {
 
   //   notifyListeners();
   // }
+
+  List getDanhMucBox() {
+    print('${danhMucBox.values.toList()} + box 3');
+    return danhMucBox.values.toList();
+  }
+
+  void addBoxToDanhMuc() {
+    print('acll');
+
+    List danhmuc = getDanhMucBox();
+
+    Data data;
+    if (danhMucBox.isNotEmpty) {
+      for (int i = 0; i < danhMucBox.length; i++) {
+        List<Data2> data2 = List.from(danhmuc[i][1]);
+        List<Data> a = [];
+        for (var element in data2) {
+          data = Data(
+              element.id,
+              element.symbol,
+              element.fullname,
+              element.exchange,
+              element.closePrice,
+              element.change,
+              element.changePercent,
+              element.totalTrading,
+              element.isSave);
+          print(data.fullname);
+          a.add(data);
+          _chungKhoanDataSort.add(data);
+        }
+        // print('box to danh muc');
+        // print(danhmuc[0][0]);
+        // print(danhmuc[0][1][0].id);
+        //addDanhMuc(danhmuc[i][0]);
+        _danhmuc.add({
+          'name': danhmuc[i][0],
+          'chungKhoans': a,
+        });
+        print(_danhmuc.length);
+      }
+
+      _danhmucText = danhmuc[0][0];
+    }
+  }
+
+  void addDanhMucBox(String key, String tendanhmuc) {
+    List<Data2> selectedItem = List.from(selectList);
+    danhMucBox.put(key, [tendanhmuc, selectedItem]);
+    notifyListeners();
+  }
 
   List getUserBox() {
     return userBox.values.toList();

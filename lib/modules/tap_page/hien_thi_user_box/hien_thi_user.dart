@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:stock_app/model/hive/box/boxes.dart';
 import 'package:stock_app/model/provider/app_provider.dart';
 
-import '../../../model/hive/model/user_model.dart';
+import '../../../model/hive/model/user/user_model.dart';
 
 class HienThiUser extends StatefulWidget {
   const HienThiUser({super.key});

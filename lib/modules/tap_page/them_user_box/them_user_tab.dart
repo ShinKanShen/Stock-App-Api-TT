@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/model/hive/box/boxes.dart';
-import 'package:stock_app/model/hive/model/user_model.dart';
+
 import 'package:stock_app/model/provider/app_provider.dart';
 import 'package:stock_app/modules/tap_page/them_user_box/widget/text_field_form.dart';
+
+import '../../../model/hive/model/user/user_model.dart';
 
 class ThemUserBox extends StatefulWidget {
   const ThemUserBox({super.key});

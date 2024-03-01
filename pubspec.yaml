@@ -44,6 +44,8 @@ dependencies:
   go_router: ^13.2.0
   hive:
   hive_flutter:
+  firebase_core:
+  firebase_auth:
 
 dev_dependencies:
   flutter_test:

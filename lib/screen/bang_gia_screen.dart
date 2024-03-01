@@ -56,7 +56,7 @@ class _BangGiaScreenState extends State<BangGiaScreen> {
                     );
                   }
                 }
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }),
         ));
   }

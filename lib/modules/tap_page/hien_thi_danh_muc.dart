@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_app/model/hive/model/danhmuc/danh_muc_model.dart';
 
-import '../../model/api/chung_khoan/chung_khoan_info.dart';
 import '../../model/provider/app_provider.dart';
 
 class HienThiDanhMuc extends StatefulWidget {
@@ -18,7 +16,7 @@ class _HienThiDanhMucState extends State<HienThiDanhMuc> {
     return Scaffold(
       body: Column(
         children: [
-          Text("Hien thi danh muc"),
+          const Text("Hien thi danh muc"),
           Selector<AppChungKhoanProvider, List>(
             selector: (_, p) => p.getDanhMucBox(),
             shouldRebuild: (p, n) => true,

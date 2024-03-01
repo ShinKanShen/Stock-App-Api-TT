@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:stock_app/model/hive/model/danhmuc/danh_muc_model.dart';
+
 import 'package:stock_app/services/api_chung_khoan_services.dart';
 
 import '../hive/model/danhmuc/data_model.dart';
@@ -70,7 +70,11 @@ class AppChungKhoanProvider extends ChangeNotifier {
   List<Data> search = [];
   late Box users;
   List<Data2> selectList = [];
+  String updateDanhMucText = '';
 
+  bool isUpdate = false;
+  bool isStart = true;
+  late Map<String, dynamic> updateDanhMuc;
   //List<Map<String, dynamic>> searchDanhMucs = [];
 
   // void addDanhMucName() {
@@ -90,12 +94,12 @@ class AppChungKhoanProvider extends ChangeNotifier {
   // }
 
   List getDanhMucBox() {
-    print('${danhMucBox.values.toList()} + box 3');
+    //print('${danhMucBox.values.toList()} + box 3');
     return danhMucBox.values.toList();
   }
 
   void addBoxToDanhMuc() {
-    print('acll');
+    //print('acll');
 
     List danhmuc = getDanhMucBox();
 
@@ -115,7 +119,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
               element.changePercent,
               element.totalTrading,
               element.isSave);
-          print(data.fullname);
+          // print(data.fullname);
           a.add(data);
           _chungKhoanDataSort.add(data);
         }
@@ -127,7 +131,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
           'name': danhmuc[i][0],
           'chungKhoans': a,
         });
-        print(_danhmuc.length);
+        //print(_danhmuc.length);
       }
 
       _danhmucText = danhmuc[0][0];
@@ -165,16 +169,60 @@ class AppChungKhoanProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // lay so item da chon
+  void selectedItemsCount() {
+    _selectItemCount = selectedItem.length;
+  }
+
   // add danh muc
   void addDanhMuc(var tendanhmuc) {
     List<Data> selectedItem = List.from(_selectedItem);
-    _selectItemCount = selectedItem.length;
+
     _danhmuc.add({
       'name': tendanhmuc,
       'chungKhoans': selectedItem,
     });
     _danhmucText = tendanhmuc;
 
+    notifyListeners();
+  }
+
+  // update danh muc
+  void getTenDanhMuc(int index) {
+    updateDanhMucText = '';
+    final danhmuc = danhMuc[index];
+    updateDanhMucText = danhmuc['name'];
+  }
+
+  void update(String tendanhmuc) {
+    List<Data> selectedItem = List.from(_selectedItem);
+    Map<String, dynamic> data = _danhmuc
+        .firstWhere((element) => element['name'] == updateDanhMuc['name']);
+    data['name'] = tendanhmuc;
+    data['chungKhoans'] = selectedItem;
+    _danhmucText = tendanhmuc;
+
+    addDataForSort();
+    //print(danhMuc[0]['chungKhoans']);
+  }
+
+  void tapgetDataDanhMuc(int index) {
+    final danhmuc = danhMuc[index];
+
+    Map<String, dynamic> data =
+        _danhmuc.firstWhere((element) => element['name'] == danhmuc['name']);
+    updateDanhMuc = Map.from(data);
+    if (data.isNotEmpty) {
+      List<Data> a = List<Data>.from(data['chungKhoans']);
+      _selectedItem.addAll(a);
+      for (var item in a) {
+        var data =
+            _chungKhoanData.firstWhere((element) => element.id == item.id);
+
+        // print('update danh muc item ${data.id} ${data.symbol}');
+        data.isSave = 1;
+      }
+    }
     notifyListeners();
   }
 
@@ -186,6 +234,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
 
   // set default cho chung khoan
   void setDefaultItem() {
+    selectedItemsCount();
     for (int i = 0; i < selectItemCount; i++) {
       _chungKhoanData[i].isSave = 0;
     }

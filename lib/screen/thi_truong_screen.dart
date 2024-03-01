@@ -24,8 +24,11 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
   @override
   void initState() {
     appProvider = context.read<AppChungKhoanProvider>();
-    if (danhMucBox.isNotEmpty) {
+    if (danhMucBox.isNotEmpty && appProvider.isStart) {
       appProvider.addBoxToDanhMuc();
+    }
+    if (!appProvider.isUpdate) {
+      appProvider.addChungKhoanData();
     }
 
     //appProvider.addDataForSort();

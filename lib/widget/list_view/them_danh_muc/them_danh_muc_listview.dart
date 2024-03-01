@@ -67,16 +67,17 @@ Widget themDanhMucListView(BuildContext context) {
                                       _appProvider
                                           .changeIsSave(data.isSave ?? 0);
 
-                                  print(
-                                      ' chung khoan is Save click ${data.isSave}');
+                                  // print(
+                                  //    ' chung khoan is Save click ${data.isSave}');
 
-                                  print(
-                                      ' chung khoan  click ${_appProvider.checkSelected}');
+                                  // print(
+                                  //    ' chung khoan  click ${_appProvider.checkSelected}');
 
                                   if (_appProvider
                                           .getChungKhoan[index].isSave ==
                                       1) {
                                     _appProvider.addSelectedItem(data);
+                                    //print(_appProvider.selectedItem);
                                     Data2 data2 = Data2(
                                         data.change ?? 0,
                                         data.changePercent ?? 0,

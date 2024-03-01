@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 
 import 'data_model.dart';
-import '../../../api/chung_khoan/chung_khoan_info.dart';
 
 part 'danh_muc_model.g.dart';
 

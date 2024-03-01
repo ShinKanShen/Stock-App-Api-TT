@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_app/model/hive/box/boxes.dart';
-import 'package:stock_app/model/hive/model/danhmuc/danh_muc_model.dart';
+
 import 'package:stock_app/model/provider/app_provider.dart';
 import 'package:stock_app/route/router_name_constant.dart';
 
@@ -22,7 +21,8 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
   void initState() {
     textEditingController = TextEditingController();
     _appProvider = context.read<AppChungKhoanProvider>();
-    _appProvider.addChungKhoanData();
+
+    textEditingController.text = _appProvider.updateDanhMucText;
 
     super.initState();
   }
@@ -86,20 +86,34 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                       // if(textEditingController.text.isEmpty || _appProvider.findDanhMucItem(textEditingController.text) ){
                       //   print("ten da bi trung or rong");
                       // }
+                      if (!_appProvider.isUpdate) {
+                        if (textEditingController.text.isEmpty) {
+                          //print("ten khong rong");
+                        } else {
+                          _appProvider.addDanhMuc(textEditingController.text);
+                          _appProvider.addDataForSort();
+                          _appProvider.addDanhMucBox(
+                              'key_${textEditingController.text}',
+                              textEditingController.text);
 
-                      if (textEditingController.text.isEmpty ||
-                          _appProvider
+                          _appProvider.isStart = false;
+                          // print('${_appProvider.getDanhMucBox()[0]}' +
+                          // 'ten danh muc trong box');
+
+                          if (_appProvider
                               .findDanhMucItem(textEditingController.text)) {
-                        print("ten khong rong");
+                            context.pushNamed(MyAppRouterName.thitruong);
+                            textEditingController.clear();
+                            _appProvider.setDefaultItem();
+                            _appProvider.clearSelectenList();
+                            // print('them thanh cong');
+                            // print(_appProvider.danhMuc);
+                          }
+                        }
+                        // print('${_appProvider.getDanhMucBox()}' +
+                        //    'ten danh muc trong box 2');
                       } else {
-                        _appProvider.addDanhMuc(textEditingController.text);
-                        _appProvider.addDataForSort();
-                        _appProvider.addDanhMucBox(
-                            'key_${textEditingController.text}',
-                            textEditingController.text);
-                        print('${_appProvider.getDanhMucBox()[0]}' +
-                            'ten danh muc trong box');
-
+                        _appProvider.update(textEditingController.text);
                         if (_appProvider
                             .findDanhMucItem(textEditingController.text)) {
                           context.pushNamed(MyAppRouterName.thitruong);
@@ -110,8 +124,6 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                           // print(_appProvider.danhMuc);
                         }
                       }
-                      print('${_appProvider.getDanhMucBox()}' +
-                          'ten danh muc trong box 2');
                     },
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),

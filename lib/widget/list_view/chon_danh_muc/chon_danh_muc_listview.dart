@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_app/model/provider/app_provider.dart';
+
+import '../../../route/router_name_constant.dart';
 
 Widget chonDanhMucListView(BuildContext context) {
   AppChungKhoanProvider _appProvider = context.read<AppChungKhoanProvider>();
@@ -21,7 +24,7 @@ Widget chonDanhMucListView(BuildContext context) {
                       onTap: () {
                         _appProvider.setDanhMucText(danhmuc['name']);
                         _appProvider.addDataForSort();
-                        print('heoolo');
+
                         Navigator.pop(context);
                       },
                       child: Column(
@@ -34,11 +37,22 @@ Widget chonDanhMucListView(BuildContext context) {
                                 style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w400),
                               ),
-                              const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 20,
-                                color: Colors.black45,
-                              )
+                              IconButton(
+                                  onPressed: () {
+                                    _appProvider.isUpdate = true;
+                                    _appProvider.isStart = false;
+                                    _appProvider.getTenDanhMuc(index);
+                                    _appProvider.tapgetDataDanhMuc(index);
+                                    //print('test2');
+                                    //print(danhmuc['chungKhoans']);
+                                    context
+                                        .pushNamed(MyAppRouterName.themDanhMuc);
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios_outlined,
+                                    size: 20,
+                                    color: Colors.black45,
+                                  )),
                             ],
                           ),
                           const Divider(

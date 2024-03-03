@@ -121,7 +121,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
               element.isSave);
           // print(data.fullname);
           a.add(data);
-          _chungKhoanDataSort.add(data);
+          //_chungKhoanDataSort.add(data);
         }
         // print('box to danh muc');
         // print(danhmuc[0][0]);
@@ -135,6 +135,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
       }
 
       _danhmucText = danhmuc[0][0];
+      addDataForSort();
     }
   }
 
@@ -194,6 +195,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
     updateDanhMucText = danhmuc['name'];
   }
 
+// cap nhat danh muc
   void update(String tendanhmuc) {
     List<Data> selectedItem = List.from(_selectedItem);
     Map<String, dynamic> data = _danhmuc
@@ -206,6 +208,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
     //print(danhMuc[0]['chungKhoans']);
   }
 
+  // gán dư lieu khi nhan sua set du lieu
   void tapgetDataDanhMuc(int index) {
     final danhmuc = danhMuc[index];
 

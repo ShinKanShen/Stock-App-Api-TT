@@ -76,8 +76,8 @@ class _MainMenuState extends State<MainMenu> {
       const ThiTruongScreen(),
       const BangGiaScreen(),
       const GiaoDichScreen(),
-      const ThemDanhMucScreen(),
       const ThongBaoScreen(),
+      const ThemDanhMucScreen(),
     ];
   }
 

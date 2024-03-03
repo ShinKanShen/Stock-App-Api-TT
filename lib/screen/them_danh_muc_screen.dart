@@ -106,6 +106,7 @@ class _ThemDanhMucScreenState extends State<ThemDanhMucScreen> {
                             textEditingController.clear();
                             _appProvider.setDefaultItem();
                             _appProvider.clearSelectenList();
+                            _appProvider.updateDanhMuc.clear();
                             // print('them thanh cong');
                             // print(_appProvider.danhMuc);
                           }

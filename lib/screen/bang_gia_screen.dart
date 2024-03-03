@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:stock_app/services/api_chung_khoan_services.dart';
-
 class BangGiaScreen extends StatefulWidget {
   const BangGiaScreen({Key? key}) : super(key: key);
 

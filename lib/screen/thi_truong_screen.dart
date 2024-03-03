@@ -30,6 +30,7 @@ class _ThiTruongScreenState extends State<ThiTruongScreen> {
     if (!appProvider.isUpdate) {
       appProvider.addChungKhoanData();
     }
+    appProvider.addDataForSort();
 
     //appProvider.addDataForSort();
     super.initState();

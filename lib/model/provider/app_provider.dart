@@ -74,7 +74,7 @@ class AppChungKhoanProvider extends ChangeNotifier {
 
   bool isUpdate = false;
   bool isStart = true;
-  late Map<String, dynamic> updateDanhMuc;
+  Map<String, dynamic> updateDanhMuc = {};
   //List<Map<String, dynamic>> searchDanhMucs = [];
 
   // void addDanhMucName() {
@@ -94,15 +94,11 @@ class AppChungKhoanProvider extends ChangeNotifier {
   // }
 
   List getDanhMucBox() {
-    //print('${danhMucBox.values.toList()} + box 3');
     return danhMucBox.values.toList();
   }
 
   void addBoxToDanhMuc() {
-    //print('acll');
-
     List danhmuc = getDanhMucBox();
-
     Data data;
     if (danhMucBox.isNotEmpty) {
       for (int i = 0; i < danhMucBox.length; i++) {
@@ -135,7 +131,6 @@ class AppChungKhoanProvider extends ChangeNotifier {
       }
 
       _danhmucText = danhmuc[0][0];
-      addDataForSort();
     }
   }
 
@@ -197,33 +192,37 @@ class AppChungKhoanProvider extends ChangeNotifier {
 
 // cap nhat danh muc
   void update(String tendanhmuc) {
-    List<Data> selectedItem = List.from(_selectedItem);
-    Map<String, dynamic> data = _danhmuc
-        .firstWhere((element) => element['name'] == updateDanhMuc['name']);
-    data['name'] = tendanhmuc;
-    data['chungKhoans'] = selectedItem;
-    _danhmucText = tendanhmuc;
+    if (isUpdate) {
+      List<Data> selectedItem = List.from(_selectedItem);
+      Map<String, dynamic> data = _danhmuc
+          .firstWhere((element) => element['name'] == updateDanhMuc['name']);
+      data['name'] = tendanhmuc;
+      data['chungKhoans'] = selectedItem;
+      _danhmucText = tendanhmuc;
 
-    addDataForSort();
+      addDataForSort();
+    }
+
     //print(danhMuc[0]['chungKhoans']);
   }
 
   // gán dư lieu khi nhan sua set du lieu
   void tapgetDataDanhMuc(int index) {
     final danhmuc = danhMuc[index];
+    if (updateDanhMucText.isNotEmpty) {
+      Map<String, dynamic> data =
+          _danhmuc.firstWhere((element) => element['name'] == danhmuc['name']);
+      updateDanhMuc = Map.from(data);
+      if (data.isNotEmpty) {
+        List<Data> a = List<Data>.from(data['chungKhoans']);
+        _selectedItem.addAll(a);
+        for (var item in a) {
+          var data =
+              _chungKhoanData.firstWhere((element) => element.id == item.id);
 
-    Map<String, dynamic> data =
-        _danhmuc.firstWhere((element) => element['name'] == danhmuc['name']);
-    updateDanhMuc = Map.from(data);
-    if (data.isNotEmpty) {
-      List<Data> a = List<Data>.from(data['chungKhoans']);
-      _selectedItem.addAll(a);
-      for (var item in a) {
-        var data =
-            _chungKhoanData.firstWhere((element) => element.id == item.id);
-
-        // print('update danh muc item ${data.id} ${data.symbol}');
-        data.isSave = 1;
+          // print('update danh muc item ${data.id} ${data.symbol}');
+          data.isSave = 1;
+        }
       }
     }
     notifyListeners();
